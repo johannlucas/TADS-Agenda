@@ -37,12 +37,16 @@ public class Arquivo {
 //        }
     }
 
-    public void Inserir() throws FileNotFoundException {
+    public void Inserir() throws FileNotFoundException, IOException {
         
         DataOutputStream stream = new DataOutputStream(
         new FileOutputStream(this.path));
         
+        stream.writeInt(this.content.getId());
+        stream.write(this.content.getNome().getBytes("UTF-8"));
+        stream.write(this.content.getTelefone().getBytes("UTF-8"));
         
+        System.out.println("Arquivo escrito com sucesso!");
     }
 
     public void Deletar() {
