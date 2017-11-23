@@ -4,11 +4,24 @@ import java.util.Scanner;
 
 public class Agenda {
 
+    private int id;
     private String nome;
     private String telefone;
-    private String endereco;
-    private String data;
-    
+
+    public Agenda(int id, String nome, String telefone) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -24,41 +37,15 @@ public class Agenda {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-
-    public Agenda(String nome, String telefone, String endereco, String data) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.data = data;
-    }
-
+    
     @Override
     public String toString() {
         
-        return this.nome
+        return this.id
+                + "\t"
+                + this.nome
                 + "\t"
                 + this.telefone
-                + "\t"
-                + this.endereco
-                + "\t"
-                + this.data;
+                + "\t";
     }
-    
-    
 }
