@@ -58,7 +58,7 @@ public class Manipular {
         String telefone = padRight(entrada.next(), 8);
 
         //System.out.println("Insira o nome do arquivo: ");
-        String arquivo = "/local/home/tads/Documentos/minhaagenda.txt";
+        String arquivo = "/local/home/tads/Documentos/minhaagenda.dat";
 
         //Instanciando agenda
         Agenda age = new Agenda(id, nome, telefone);
