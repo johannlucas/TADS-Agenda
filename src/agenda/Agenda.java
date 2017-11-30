@@ -8,6 +8,11 @@ public class Agenda {
     private String nome;
     private String telefone;
 
+    public Agenda()
+    {
+        
+    }
+    
     public Agenda(String id, String nome, String telefone) {
         this.id = id;
         this.nome = nome;
