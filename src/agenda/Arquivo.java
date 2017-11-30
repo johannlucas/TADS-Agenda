@@ -22,8 +22,8 @@ public class Arquivo {
         this.path = path;
         this.content = content;
     }
-	
-	public void Inserir() throws FileNotFoundException, IOException {
+
+    public void Inserir() throws FileNotFoundException, IOException {
 
         DataOutputStream stream = new DataOutputStream(new FileOutputStream(this.path, true));
 
@@ -36,26 +36,25 @@ public class Arquivo {
 
         System.out.println("Arquivo escrito com sucesso!");
     }
-	
-	public void Alterar() {
-		// BufferedReader buff = new BufferedReader(new FileReader(this.path));
-        
+
+    public void Alterar() {
+        // BufferedReader buff = new BufferedReader(new FileReader(this.path));
+
         // String line;
         // while ((line = buff.readLine().trim()) != null) {
-            // if (line.equals(String.valueOf(this.content.getId()))) {
-                // stream.writeUTF(this.content.getId() + "\n");
-				// stream.writeUTF(this.content.getNome() + "\n");
-				// stream.writeUTF(this.content.getTelefone() + "\n");
-
-                // break;
-            // }
+        // if (line.equals(String.valueOf(this.content.getId()))) {
+        // stream.writeUTF(this.content.getId() + "\n");
+        // stream.writeUTF(this.content.getNome() + "\n");
+        // stream.writeUTF(this.content.getTelefone() + "\n");
+        // break;
+        // }
         // }
     }
 
     public void Buscar() throws FileNotFoundException, IOException {
-        
+
         BufferedReader buff = new BufferedReader(new FileReader(this.path));
-        
+
         String line;
         while ((line = buff.readLine().trim()) != null) {
             if (line.equals(String.valueOf(this.content.getId()))) {
@@ -67,19 +66,19 @@ public class Arquivo {
             }
         }
     }
-	
+
     public void Excluir() {
-		// BufferedReader buff = new BufferedReader(new FileReader(this.path));
+        // BufferedReader buff = new BufferedReader(new FileReader(this.path));
         // DataOutputStream stream = new DataOutputStream(new FileOutputStream(this.path, true));
         // String line;
-        
-		// while ((line = buff.readLine().trim()) != null) {
-            // if (line.equals(String.valueOf(this.content.getId()))) {
-            // }else{
-				// stream.writeUTF(this.content.getId() + "\n");
-				// stream.writeUTF(this.content.getNome() + "\n");
-				// stream.writeUTF(this.content.getTelefone() + "\n");
-			// }
+
+        // while ((line = buff.readLine().trim()) != null) {
+        // if (line.equals(String.valueOf(this.content.getId()))) {
+        // }else{
+        // stream.writeUTF(this.content.getId() + "\n");
+        // stream.writeUTF(this.content.getNome() + "\n");
+        // stream.writeUTF(this.content.getTelefone() + "\n");
+        // }
         // }
     }
 }
