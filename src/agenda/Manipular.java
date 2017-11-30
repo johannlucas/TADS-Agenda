@@ -21,6 +21,10 @@ public class Manipular {
         Scanner entrada = new Scanner(System.in);
         Boolean sair = true;
 
+        System.out.println("------------------------------------------");
+        System.out.println("-------------Olá! Bem vindo!--------------");
+        System.out.println("------------------------------------------");
+        
         while (sair) {
 
             Opcoes();
@@ -42,6 +46,9 @@ public class Manipular {
                     break;
                 default:
                     sair = false;
+                    System.out.println("------------------------------------------");
+                    System.out.println("----------------Até mais!-----------------");
+                    System.out.println("------------------------------------------");
                     break;
             }
         }
@@ -109,8 +116,15 @@ public class Manipular {
 
         //Instanciando arquivo
         Arquivo arq = new Arquivo(arquivo, age);
+        
+        System.out.println("------------------------------------------");
+        System.out.println("------------------------------------------");
+        
         //Buscar arquivo
         arq.Buscar();
+        
+        System.out.println("------------------------------------------");
+        System.out.println("------------------------------------------");
     }
 
     private void Excluir() throws IOException {
@@ -131,11 +145,16 @@ public class Manipular {
     private void Listar() throws IOException {
         //Pedir informacoes
         System.out.println("Agenda completa");
+        System.out.println("------------------------------------------");
+        System.out.println("------------------------------------------");
 
         //Instanciando arquivo
         Arquivo arq = new Arquivo(arquivo, new Agenda());
         //Buscar arquivo
         arq.Listar();
+        
+        System.out.println("------------------------------------------");
+        System.out.println("------------------------------------------");
     }
 
     public static String padRight(String s, int n) {
