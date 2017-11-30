@@ -75,6 +75,7 @@ public class Manipular {
         Arquivo arq = new Arquivo(arquivo, age);
         //Salvar arquivo
         arq.Inserir();
+        
     }
 
     private void Alterar() throws IOException {
@@ -128,18 +129,13 @@ public class Manipular {
     }
     
     private void Listar() throws IOException {
-        Scanner entrada = new Scanner(System.in);
         //Pedir informacoes
-        System.out.println("Insira um ID");
-        String id = entrada.next();
-
-        //Instanciando agenda
-        Agenda age = new Agenda(id);
+        System.out.println("Agenda completa");
 
         //Instanciando arquivo
-        Arquivo arq = new Arquivo(arquivo, age);
+        Arquivo arq = new Arquivo(arquivo, new Agenda());
         //Buscar arquivo
-        arq.Excluir();
+        arq.Listar();
     }
 
     public static String padRight(String s, int n) {

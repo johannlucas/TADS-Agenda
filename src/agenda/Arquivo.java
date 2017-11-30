@@ -53,18 +53,30 @@ public class Arquivo {
         }
     }
 
+    public void Listar() throws IOException {
+
+        BufferedReader buff = new BufferedReader(new FileReader(this.path));
+
+        String line;
+        while ((line = buff.readLine()) != null) {
+            System.out.println("Id: " + line.trim());
+            System.out.println("Nome: " + buff.readLine().trim());
+            System.out.println("Telefone: " + buff.readLine().trim());
+            
+        }
+        
+    }
+
     public void Buscar() throws IOException {
 
         BufferedReader buff = new BufferedReader(new FileReader(this.path));
 
         String line;
-        while ((line = buff.readLine().trim()) != null) {
+        while ((line = buff.readLine()) != null) {
             if (line.equals(String.valueOf(this.content.getId()))) {
                 System.out.println("Id: " + line);
                 System.out.println("Nome: " + buff.readLine().trim());
                 System.out.println("Telefone: " + buff.readLine().trim());
-
-                break;
             }
         }
     }
@@ -72,17 +84,17 @@ public class Arquivo {
     public void Excluir() throws IOException {
 
         BufferedReader buff = new BufferedReader(new FileReader(this.path));
-        
+
         File fileAux = new File(new File(this.path).getParent() + "/temp.dat");
         File file = new File(this.path);
-        
+
         DataOutputStream stream = new DataOutputStream(new FileOutputStream(fileAux));
-        
+
         String line;
 
         while ((line = buff.readLine().trim()) != null) {
             if (line.equals(String.valueOf(this.content.getId()))) {
-                
+
                 //Pular duas linhas
                 buff.readLine();
                 buff.readLine();
@@ -90,7 +102,7 @@ public class Arquivo {
                 stream.writeUTF(buff.readLine());
                 stream.writeUTF(buff.readLine());
                 stream.writeUTF(buff.readLine());
-                
+
                 //Apagar arquivo antigo
                 file.delete();
                 fileAux.renameTo(file);
