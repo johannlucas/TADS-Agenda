@@ -37,21 +37,23 @@ public class Arquivo {
         System.out.println("Arquivo escrito com sucesso!");
     }
 
-    public void Alterar() {
-        // BufferedReader buff = new BufferedReader(new FileReader(this.path));
+    public void Alterar() throws IOException {
 
-        // String line;
-        // while ((line = buff.readLine().trim()) != null) {
-        // if (line.equals(String.valueOf(this.content.getId()))) {
-        // stream.writeUTF(this.content.getId() + "\n");
-        // stream.writeUTF(this.content.getNome() + "\n");
-        // stream.writeUTF(this.content.getTelefone() + "\n");
-        // break;
-        // }
-        // }
+        BufferedReader buff = new BufferedReader(new FileReader(this.path));
+        String line;
+        while ((line = buff.readLine().trim()) != null) {
+            if (line.equals(String.valueOf(this.content.getId()))) {
+
+                String contentToDelete = line + buff.readLine() + buff.readLine();
+                System.out.println("Id: " + line);
+                System.out.println("Nome: " + buff.readLine().trim());
+                System.out.println("Telefone: " + buff.readLine().trim());
+                break;
+            }
+        }
     }
 
-    public void Buscar() throws FileNotFoundException, IOException {
+    public void Buscar() throws IOException {
 
         BufferedReader buff = new BufferedReader(new FileReader(this.path));
 
@@ -67,18 +69,32 @@ public class Arquivo {
         }
     }
 
-    public void Excluir() {
-        // BufferedReader buff = new BufferedReader(new FileReader(this.path));
-        // DataOutputStream stream = new DataOutputStream(new FileOutputStream(this.path, true));
-        // String line;
+    public void Excluir() throws IOException {
 
-        // while ((line = buff.readLine().trim()) != null) {
-        // if (line.equals(String.valueOf(this.content.getId()))) {
-        // }else{
-        // stream.writeUTF(this.content.getId() + "\n");
-        // stream.writeUTF(this.content.getNome() + "\n");
-        // stream.writeUTF(this.content.getTelefone() + "\n");
-        // }
-        // }
+        BufferedReader buff = new BufferedReader(new FileReader(this.path));
+        
+        File fileAux = new File(new File(this.path).getParent() + "/temp.dat");
+        File file = new File(this.path);
+        
+        DataOutputStream stream = new DataOutputStream(new FileOutputStream(fileAux));
+        
+        String line;
+
+        while ((line = buff.readLine().trim()) != null) {
+            if (line.equals(String.valueOf(this.content.getId()))) {
+                
+                //Pular duas linhas
+                buff.readLine();
+                buff.readLine();
+            } else {
+                stream.writeUTF(buff.readLine());
+                stream.writeUTF(buff.readLine());
+                stream.writeUTF(buff.readLine());
+                
+                //Apagar arquivo antigo
+                file.delete();
+                fileAux.renameTo(file);
+            }
+        }
     }
 }

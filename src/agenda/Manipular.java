@@ -5,15 +5,19 @@ import java.util.Scanner;
 
 public class Manipular {
 
+    //Windows
+    //String arquivo = "C:\\Users\\k27394\\Documents\\minhaagenda.dat";
+    //Linux
+    String arquivo = "/local/home/tads/Documentos/minhaagenda.dat";
+
     public static void main(String[] args) throws IOException {
-		
-		//System.out.println("Insira o nome do arquivo: ");
-		//Linux
+
+        //System.out.println("Insira o nome do arquivo: ");
+        //Linux
         //String arquivo = "/local/home/tads/Documentos/minhaagenda.dat";
-        
         //Windows
-        String arquivo = "C:\\Users\\k27394\\Documents\\minhaagenda.dat";
-		
+        Manipular contexto = new Manipular();
+
         Scanner entrada = new Scanner(System.in);
         Boolean sair = true;
 
@@ -22,16 +26,19 @@ public class Manipular {
             Opcoes();
             switch (entrada.next()) {
                 case "1":
-                    Inserir();
+                    contexto.Inserir();
                     break;
                 case "2":
-					Alterar();
+                    contexto.Alterar();
                     break;
                 case "3":
-                    Buscar();
+                    contexto.Buscar();
                     break;
                 case "4":
-					Excluir();
+                    contexto.Listar();
+                    break;
+                case "5":
+                    contexto.Excluir();
                     break;
                 default:
                     sair = false;
@@ -44,11 +51,12 @@ public class Manipular {
         System.out.println("1- Inserir");
         System.out.println("2- Alterar");
         System.out.println("3- Buscar");
-        System.out.println("4- Excluir");
-        System.out.println("5- Sair");
+        System.out.println("4- Listar");
+        System.out.println("5- Excluir");
+        System.out.println("6- Sair");
     }
 
-    private static void Inserir() throws IOException {
+    private void Inserir() throws IOException {
         Scanner entrada = new Scanner(System.in);
         //Pedir informacoes
         System.out.println("Insira um ID");
@@ -68,13 +76,16 @@ public class Manipular {
         //Salvar arquivo
         arq.Inserir();
     }
-    
-	
-	private static void Alterar() throws IOException{
-		Scanner entrada = new Scanner(System.in);
+
+    private void Alterar() throws IOException {
+        Scanner entrada = new Scanner(System.in);
         //Pedir informacoes
-        System.out.println("Insira um ID");
-        int id = entrada.nextInt();
+        System.out.println("Insira o ID do registro que você quer alterar: ");
+        String id = entrada.next();
+        System.out.println("Insira um nome: ");
+        String nome = entrada.next();
+        System.out.println("Insira um telefone: ");
+        String telefone = entrada.next();
 
         //Instanciando agenda
         Agenda age = new Agenda(id);
@@ -83,13 +94,14 @@ public class Manipular {
         Arquivo arq = new Arquivo(arquivo, age);
         //Buscar arquivo
         arq.Alterar();
-	}
-	
-    private static void Buscar() throws IOException {
+    }
+
+    private void Buscar() throws IOException {
         Scanner entrada = new Scanner(System.in);
+
         //Pedir informacoes
         System.out.println("Insira um ID");
-        int id = entrada.nextInt();
+        String id = entrada.next();
 
         //Instanciando agenda
         Agenda age = new Agenda(id);
@@ -99,12 +111,12 @@ public class Manipular {
         //Buscar arquivo
         arq.Buscar();
     }
-	
-	private static void Excluir() throws IOException{
-		Scanner entrada = new Scanner(System.in);
+
+    private void Excluir() throws IOException {
+        Scanner entrada = new Scanner(System.in);
         //Pedir informacoes
         System.out.println("Insira um ID");
-        int id = entrada.nextInt();
+        String id = entrada.next();
 
         //Instanciando agenda
         Agenda age = new Agenda(id);
@@ -113,10 +125,25 @@ public class Manipular {
         Arquivo arq = new Arquivo(arquivo, age);
         //Buscar arquivo
         arq.Excluir();
-	}
-	
-	public static String padRight(String s, int n) {
+    }
+    
+    private void Listar() throws IOException {
+        Scanner entrada = new Scanner(System.in);
+        //Pedir informacoes
+        System.out.println("Insira um ID");
+        String id = entrada.next();
+
+        //Instanciando agenda
+        Agenda age = new Agenda(id);
+
+        //Instanciando arquivo
+        Arquivo arq = new Arquivo(arquivo, age);
+        //Buscar arquivo
+        arq.Excluir();
+    }
+
+    public static String padRight(String s, int n) {
         return String.format("%1$-" + n + "s", s);
     }
-	
+
 }
