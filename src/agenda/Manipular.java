@@ -1,20 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package agenda;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-/**
- *
- * @author tads
- */
 public class Manipular {
 
     public static void main(String[] args) throws IOException {
+		
+		//System.out.println("Insira o nome do arquivo: ");
+		//Linux
+        //String arquivo = "/local/home/tads/Documentos/minhaagenda.dat";
+        
+        //Windows
+        String arquivo = "C:\\Users\\k27394\\Documents\\minhaagenda.dat";
+		
         Scanner entrada = new Scanner(System.in);
         Boolean sair = true;
 
@@ -26,25 +25,26 @@ public class Manipular {
                     Inserir();
                     break;
                 case "2":
+					Alterar();
                     break;
                 case "3":
                     Buscar();
                     break;
                 case "4":
+					Excluir();
                     break;
                 default:
                     sair = false;
                     break;
             }
         }
-
     }
 
     private static void Opcoes() {
         System.out.println("1- Inserir");
-        System.out.println("2- Atualizar");
+        System.out.println("2- Alterar");
         System.out.println("3- Buscar");
-        System.out.println("4- Deletar");
+        System.out.println("4- Excluir");
         System.out.println("5- Sair");
     }
 
@@ -60,14 +60,6 @@ public class Manipular {
         String telefone = entrada.next();
         //String telefone = padRight(entrada.next(), 8);
 
-        //System.out.println("Insira o nome do arquivo: ");
-        
-        //Linux
-        //String arquivo = "/local/home/tads/Documentos/minhaagenda.dat";
-        
-        //Windows
-        String arquivo = "C:\\Users\\k27394\\Documents\\minhaagenda.dat";
-
         //Instanciando agenda
         Agenda age = new Agenda(id, nome, telefone);
 
@@ -77,28 +69,54 @@ public class Manipular {
         arq.Inserir();
     }
     
-    private static void Buscar() throws IOException {
-        Scanner entrada = new Scanner(System.in);
+	
+	private static void Alterar() throws IOException{
+		Scanner entrada = new Scanner(System.in);
         //Pedir informacoes
         System.out.println("Insira um ID");
         int id = entrada.nextInt();
-        
-        //Linux
-        //String arquivo = "/local/home/tads/Documentos/minhaagenda.dat";
-        
-        //Windows
-        String arquivo = "C:\\Users\\k27394\\Documents\\minhaagenda.dat";
 
         //Instanciando agenda
         Agenda age = new Agenda(id);
 
         //Instanciando arquivo
         Arquivo arq = new Arquivo(arquivo, age);
-        //Salvar arquivo
+        //Buscar arquivo
+        arq.Alterar();
+	}
+	
+    private static void Buscar() throws IOException {
+        Scanner entrada = new Scanner(System.in);
+        //Pedir informacoes
+        System.out.println("Insira um ID");
+        int id = entrada.nextInt();
+
+        //Instanciando agenda
+        Agenda age = new Agenda(id);
+
+        //Instanciando arquivo
+        Arquivo arq = new Arquivo(arquivo, age);
+        //Buscar arquivo
         arq.Buscar();
     }
+	
+	private static void Excluir() throws IOException{
+		Scanner entrada = new Scanner(System.in);
+        //Pedir informacoes
+        System.out.println("Insira um ID");
+        int id = entrada.nextInt();
 
-    public static String padRight(String s, int n) {
+        //Instanciando agenda
+        Agenda age = new Agenda(id);
+
+        //Instanciando arquivo
+        Arquivo arq = new Arquivo(arquivo, age);
+        //Buscar arquivo
+        arq.Excluir();
+	}
+	
+	public static String padRight(String s, int n) {
         return String.format("%1$-" + n + "s", s);
     }
+	
 }
