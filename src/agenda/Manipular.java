@@ -28,6 +28,7 @@ public class Manipular {
                 case "2":
                     break;
                 case "3":
+                    Buscar();
                     break;
                 case "4":
                     break;
@@ -42,7 +43,7 @@ public class Manipular {
     private static void Opcoes() {
         System.out.println("1- Inserir");
         System.out.println("2- Atualizar");
-        System.out.println("3- Listar");
+        System.out.println("3- Buscar");
         System.out.println("4- Deletar");
         System.out.println("5- Sair");
     }
@@ -51,14 +52,21 @@ public class Manipular {
         Scanner entrada = new Scanner(System.in);
         //Pedir informacoes
         System.out.println("Insira um ID");
-        int id = entrada.nextInt();
+        String id = entrada.next();
         System.out.println("Insira um nome: ");
-        String nome = padRight(entrada.next(), 10);
+        String nome = entrada.next();
+        //String nome = padRight(entrada.next(), 10);
         System.out.println("Insira um telefone: ");
-        String telefone = padRight(entrada.next(), 8);
+        String telefone = entrada.next();
+        //String telefone = padRight(entrada.next(), 8);
 
         //System.out.println("Insira o nome do arquivo: ");
-        String arquivo = "/local/home/tads/Documentos/minhaagenda.dat";
+        
+        //Linux
+        //String arquivo = "/local/home/tads/Documentos/minhaagenda.dat";
+        
+        //Windows
+        String arquivo = "C:\\Users\\k27394\\Documents\\minhaagenda.dat";
 
         //Instanciando agenda
         Agenda age = new Agenda(id, nome, telefone);
@@ -67,6 +75,27 @@ public class Manipular {
         Arquivo arq = new Arquivo(arquivo, age);
         //Salvar arquivo
         arq.Inserir();
+    }
+    
+    private static void Buscar() throws IOException {
+        Scanner entrada = new Scanner(System.in);
+        //Pedir informacoes
+        System.out.println("Insira um ID");
+        int id = entrada.nextInt();
+        
+        //Linux
+        //String arquivo = "/local/home/tads/Documentos/minhaagenda.dat";
+        
+        //Windows
+        String arquivo = "C:\\Users\\k27394\\Documents\\minhaagenda.dat";
+
+        //Instanciando agenda
+        Agenda age = new Agenda(id);
+
+        //Instanciando arquivo
+        Arquivo arq = new Arquivo(arquivo, age);
+        //Salvar arquivo
+        arq.Buscar();
     }
 
     public static String padRight(String s, int n) {

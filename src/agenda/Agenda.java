@@ -4,21 +4,26 @@ import java.util.Scanner;
 
 public class Agenda {
 
-    private int id;
+    private String id;
     private String nome;
     private String telefone;
 
-    public Agenda(int id, String nome, String telefone) {
+    public Agenda(String id, String nome, String telefone) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
     }
 
-    public int getId() {
+    //Construtor para ler
+    public Agenda(String id) {
+        this.id = id;
+    }
+    
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,10 +47,10 @@ public class Agenda {
     public String toString() {
         
         return this.id
-                + "\t"
+                + "\n"
                 + this.nome
-                + "\t"
+                + "\n"
                 + this.telefone
-                + "\t";
+                + "\n";
     }
 }
