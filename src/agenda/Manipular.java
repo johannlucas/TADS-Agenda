@@ -80,7 +80,7 @@ public class Manipular {
     private void Alterar() throws IOException {
         Scanner entrada = new Scanner(System.in);
         //Pedir informacoes
-        System.out.println("Insira o ID do registro que você quer alterar: ");
+        System.out.println("Insira o ID do registro que você quer alterar:");
         String id = entrada.next();
         System.out.println("Insira um nome: ");
         String nome = entrada.next();
@@ -88,12 +88,12 @@ public class Manipular {
         String telefone = entrada.next();
 
         //Instanciando agenda
-        Agenda age = new Agenda(id);
+        Agenda age = new Agenda(id, nome, telefone);
 
         //Instanciando arquivo
         Arquivo arq = new Arquivo(arquivo, age);
         //Buscar arquivo
-        arq.Alterar();
+        arq.ExcluirAlterar(true);
     }
 
     private void Buscar() throws IOException {
@@ -111,6 +111,22 @@ public class Manipular {
         //Buscar arquivo
         arq.Buscar();
     }
+    
+    private void Listar() throws IOException {
+        Scanner entrada = new Scanner(System.in);
+
+        //Pedir informacoes
+       
+        String id = "x";
+
+        //Instanciando agenda
+        Agenda age = new Agenda(id);
+
+        //Instanciando arquivo
+        Arquivo arq = new Arquivo(arquivo, age);
+        //Buscar arquivo
+        arq.Listar();
+    }
 
     private void Excluir() throws IOException {
         Scanner entrada = new Scanner(System.in);
@@ -124,23 +140,23 @@ public class Manipular {
         //Instanciando arquivo
         Arquivo arq = new Arquivo(arquivo, age);
         //Buscar arquivo
-        arq.Excluir();
+        arq.ExcluirAlterar(false);
     }
     
-    private void Listar() throws IOException {
-        Scanner entrada = new Scanner(System.in);
-        //Pedir informacoes
-        System.out.println("Insira um ID");
-        String id = entrada.next();
-
-        //Instanciando agenda
-        Agenda age = new Agenda(id);
-
-        //Instanciando arquivo
-        Arquivo arq = new Arquivo(arquivo, age);
-        //Buscar arquivo
-        arq.Excluir();
-    }
+//    private void Listar() throws IOException {
+//        Scanner entrada = new Scanner(System.in);
+//        //Pedir informacoes
+//        System.out.println("Insira um ID");
+//        String id = entrada.next();
+//
+//        //Instanciando agenda
+//        Agenda age = new Agenda(id);
+//
+//        //Instanciando arquivo
+//        Arquivo arq = new Arquivo(arquivo, age);
+//        //Buscar arquivo
+//        arq.ExcluirAlterar(true);
+//    }
 
     public static String padRight(String s, int n) {
         return String.format("%1$-" + n + "s", s);

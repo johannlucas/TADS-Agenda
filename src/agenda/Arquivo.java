@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
 
 public class Arquivo {
 
@@ -69,31 +70,62 @@ public class Arquivo {
         }
     }
 
-    public void Excluir() throws IOException {
+    public void Listar() throws IOException {
 
         BufferedReader buff = new BufferedReader(new FileReader(this.path));
-        
-        File fileAux = new File(new File(this.path).getParent() + "/temp.dat");
-        File file = new File(this.path);
-        
-        DataOutputStream stream = new DataOutputStream(new FileOutputStream(fileAux));
-        
-        String line;
 
+        String line;
         while ((line = buff.readLine().trim()) != null) {
-            if (line.equals(String.valueOf(this.content.getId()))) {
-                
-                //Pular duas linhas
-                buff.readLine();
-                buff.readLine();
-            } else {
-                stream.writeUTF(buff.readLine());
-                stream.writeUTF(buff.readLine());
-                stream.writeUTF(buff.readLine());
-                
-                //Apagar arquivo antigo
-                file.delete();
-                fileAux.renameTo(file);
+            System.out.println("Id: " + line);
+            System.out.println("Nome: " + buff.readLine().trim());
+            System.out.println("Telefone: " + buff.readLine().trim());
+            //break;
+
+        }
+    }
+
+    public void ExcluirAlterar(Boolean alterar) throws IOException {
+
+        File fileAux = new File(new File(this.path).getParent() + "/temp.dat");
+
+        try {
+            BufferedReader buff = new BufferedReader(new FileReader(this.path));
+
+            File file = new File(this.path);
+
+            DataOutputStream stream = new DataOutputStream(new FileOutputStream(fileAux));
+
+            String line;
+
+            while ((line = buff.readLine()) != null) {
+                if (line.trim().equals(String.valueOf(this.content.getId()))) {
+
+                    //Pular duas linhas
+                    if (alterar) {
+                        stream.writeUTF(this.content.getId() + "\n");
+                        stream.writeUTF(this.content.getNome() + "\n");
+                        stream.writeUTF(this.content.getTelefone() + "\n");
+                    }
+
+                    buff.readLine();
+                    buff.readLine();
+                } else {
+                    stream.writeUTF(line.trim() + "\n");
+                    stream.writeUTF(buff.readLine().trim() + "\n");
+                    stream.writeUTF(buff.readLine().trim() + "\n");
+                }
+            }
+
+            //Apagar arquivo antigo
+            file.delete();
+            fileAux.renameTo(new File(this.path));
+
+            stream.flush();
+            stream.close();
+
+        } catch (Exception e) {
+            if (fileAux.exists()) {
+                fileAux.delete();
             }
         }
     }
